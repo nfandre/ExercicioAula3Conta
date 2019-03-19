@@ -8,11 +8,11 @@ public class Conta {
 	
 	
 	
-	public Conta(String numeroConta, String titular, double saldo) {
+	public Conta(String numeroConta, String titular) {
 		super();
 		NumeroConta = numeroConta;
 		Titular = titular;
-		Saldo = saldo;
+		Saldo = 0;
 	}
 
 	@Override

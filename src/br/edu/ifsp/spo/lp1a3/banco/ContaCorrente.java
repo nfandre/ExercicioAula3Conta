@@ -9,7 +9,7 @@ public class ContaCorrente extends Conta{
 	private static double taxaJurosChequeEspecial;
 	
 	public ContaCorrente(String numeroConta, String titular, double saldo) {
-		super(numeroConta, titular, saldo);
+		super(numeroConta, titular);
 		
 	}
 

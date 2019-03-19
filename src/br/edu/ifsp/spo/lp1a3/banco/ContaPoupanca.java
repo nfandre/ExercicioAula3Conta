@@ -5,7 +5,7 @@ public class ContaPoupanca extends Conta{
 	private static double rendimento;
 	
 	public ContaPoupanca(String numeroConta, String titular, double saldo) {
-		super(numeroConta, titular, saldo);
+		super(numeroConta, titular);
 	}
 	public void aplicarRendimento() {
 		
