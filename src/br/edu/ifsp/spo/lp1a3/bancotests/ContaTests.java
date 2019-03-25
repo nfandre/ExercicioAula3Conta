@@ -44,4 +44,16 @@ class ContaTests {
 		assertEquals(retorno, conta.toString());
 	}
 	
+	@Test
+	void validar_Esquals_Object() {
+		Conta a =new Conta("11111","andre");
+		Conta b = new Conta("11111","andre");
+		
+		boolean resultado1 = a.equals(b);
+		boolean resultado2 = b.equals(a);
+		
+		assertTrue(resultado1);
+		assertTrue(resultado2);
+	}
+	
 }

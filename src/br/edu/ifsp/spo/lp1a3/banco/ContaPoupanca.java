@@ -2,22 +2,18 @@ package br.edu.ifsp.spo.lp1a3.banco;
 
 public class ContaPoupanca extends Conta{
 
-	private static double rendimento;
+	private static double TaxaRendimento;
 	
-	public ContaPoupanca(String numeroConta, String titular, double saldo) {
+	public ContaPoupanca(String numeroConta, String titular) {
 		super(numeroConta, titular);
 	}
 	public void aplicarRendimento() {
 		
-		this.setRendimento(this.getRendimento()*0.001);
-	}
-	
-	public  double getRendimento() {
-		return rendimento;
+		super.setSaldo(this.getSaldo() + (this.getSaldo()* TaxaRendimento));
 	}
 
-	public  void setRendimento(double rendimento) {
-		ContaPoupanca.rendimento = rendimento;
+	public  void setRendimento(double taxaRendimento) {
+		ContaPoupanca.TaxaRendimento = taxaRendimento;
 	}
 	
 	

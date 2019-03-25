@@ -8,7 +8,7 @@ public class ContaCorrente extends Conta{
 	private double limiteChequeEspecial;
 	private static double taxaJurosChequeEspecial;
 	
-	public ContaCorrente(String numeroConta, String titular, double saldo) {
+	public ContaCorrente(String numeroConta, String titular) {
 		super(numeroConta, titular);
 		
 	}
@@ -20,7 +20,7 @@ public class ContaCorrente extends Conta{
 	@Override
 	public double sacar(double valor) {
 		this.setSaldo(this.getSaldo()-valor);
-		this.sacar((this.getSaldo() * -0.01));
+		this.setSaldo((this.getSaldo() -(valor * 0.01)));
 		return this.getSaldo();
 	}
 

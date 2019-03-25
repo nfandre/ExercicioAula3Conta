@@ -58,14 +58,8 @@ public class Conta {
 	public String getNumeroConta() {
 		return NumeroConta;
 	}
-	public void setNumeroConta(String numeroConta) {
-		NumeroConta = numeroConta;
-	}
 	public String getTitular() {
 		return Titular;
-	}
-	public void setTitular(String titular) {
-		Titular = titular;
 	}
 	public double getSaldo() {
 		return Saldo;
