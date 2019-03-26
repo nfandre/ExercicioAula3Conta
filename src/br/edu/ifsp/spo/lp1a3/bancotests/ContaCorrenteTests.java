@@ -13,7 +13,8 @@ class ContaCorrenteTests {
 		
 		String titular = "Andre";
 		String numeroConta = "12345";
-		ContaCorrente cc = new ContaCorrente(numeroConta,titular);
+		double limiteCheque = 1000;
+		ContaCorrente cc = new ContaCorrente(numeroConta,titular,limiteCheque);
 		assertNotNull(cc);
 		assertEquals(titular, cc.getTitular());
 		assertEquals(numeroConta, cc.getNumeroConta());
@@ -22,11 +23,11 @@ class ContaCorrenteTests {
 	@Test
 	void validar_depositar(){
 		String titular = "Andre";
-		String numeroConta = "12345";
-		
+		String numeroConta = "12void345";
+		double limiteCheque = 1000;
 		double valor=100;
 		
-		ContaCorrente cc = new ContaCorrente(numeroConta,titular);
+		ContaCorrente cc = new ContaCorrente(numeroConta,titular,limiteCheque);
 		cc.depositar(valor);
 		
 		assertEquals(valor, cc.getSaldo());
@@ -35,8 +36,8 @@ class ContaCorrenteTests {
 	void validar_sacar() {
 		String titular = "Andre";
 		String numeroConta = "12345";
-
-		ContaCorrente cc = new ContaCorrente(numeroConta,titular);
+		double limiteCheque = 1000;
+		ContaCorrente cc = new ContaCorrente(numeroConta,titular,limiteCheque);
 		
 		double valor = 100, imposto =0.01;
 		cc.depositar(valor);
@@ -45,5 +46,22 @@ class ContaCorrenteTests {
 
 		
 		assertEquals(valor,cc.getSaldo());
+	}
+	@Test
+	void validar_sacar_usando_limite() {
+		String titular = "Andre";
+		String numeroConta = "12345";
+		double limiteCheque = 1000;
+		ContaCorrente cc = new ContaCorrente(numeroConta,titular,limiteCheque);
+		
+		double valorDeposita = 1000;
+		double imposto =0.01;
+		double valorSacar = 1200;
+		cc.depositar(valorDeposita);
+	    cc.sacar(valorSacar);
+		assertEquals(0, cc.getSaldo());
+		
+		limiteCheque =+ valorDeposita - valorSacar ;//-(cc.getSaldo() * imposto);
+		assertEquals(limiteCheque, cc.getLimiteChequeEspecial());
 	}
 }
