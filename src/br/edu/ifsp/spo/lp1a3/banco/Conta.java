@@ -1,5 +1,7 @@
 package br.edu.ifsp.spo.lp1a3.banco;
 
+import br.edu.ifsp.spo.lp1a3.bancoException.CamposVaziosExcepitonRuntime;
+
 public class Conta {
 	
 	private  String NumeroConta;
@@ -10,9 +12,24 @@ public class Conta {
 	
 	public Conta(String numeroConta, String titular) {
 		super();
-		NumeroConta = numeroConta;
-		Titular = titular;
-		Saldo = 0;
+		
+		try {
+			if(numeroConta.trim().isBlank() || numeroConta == null ) {
+				throw new CamposVaziosExcepitonRuntime("Numero da conta vazio");
+			}	
+			if(titular.trim().isBlank() || titular == null) {
+				throw new CamposVaziosExcepitonRuntime("");
+			}
+			NumeroConta = numeroConta;
+			Titular = titular;
+			Saldo = 0;
+		}catch( CamposVaziosExcepitonRuntime e) {
+			e.printStackTrace();
+		}
+			
+
+	
+		
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package br.edu.ifsp.spo.lp1a3.banco;
 
+import br.edu.ifsp.spo.lp1a3.bancoException.ContaCorrenteLimiteMenorZero;
+
 public class ContaCorrente extends Conta{
 
 
@@ -10,13 +12,16 @@ public class ContaCorrente extends Conta{
 	
 	public ContaCorrente(String numeroConta, String titular, double limiteChequeEspecial) {
 		super(numeroConta, titular);
+		if (limiteChequeEspecial <= 0)
+			throw new ContaCorrenteLimiteMenorZero();
+			
 		this.setLimiteChequeEspecial(limiteChequeEspecial);
 	}
 
 	public void debitarJuros() {
-		//TODO: implementar;
 		double valorTaxa = getTaxaJurosChequeEspecial() * this.getSaldo();
 		depositar(-valorTaxa);
+		System.out.println(this.getSaldo());
 	}
 	
 	@Override
@@ -29,7 +34,7 @@ public class ContaCorrente extends Conta{
 				 double saldo = this.getSaldo();
 				 double taxa = saldo * 0.01 ;
 				 this.setSaldo(0);
-				 saldo = saldo - valor; //- taxa;
+				 saldo = saldo - valor - taxa;
 				 this.setLimiteChequeEspecial(saldo);
 				 
 			}else {

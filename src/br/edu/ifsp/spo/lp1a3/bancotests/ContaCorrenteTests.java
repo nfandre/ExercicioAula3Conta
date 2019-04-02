@@ -61,7 +61,35 @@ class ContaCorrenteTests {
 	    cc.sacar(valorSacar);
 		assertEquals(0, cc.getSaldo());
 		
-		limiteCheque =+ valorDeposita - valorSacar ;//-(cc.getSaldo() * imposto);
+		limiteCheque =+ valorDeposita - valorSacar -(valorDeposita * imposto);
 		assertEquals(limiteCheque, cc.getLimiteChequeEspecial());
+	}
+	
+	@Test
+	void validar_não_poder_sacar() {
+		String titular = "Andre";
+		String numeroConta = "12345";
+		double limiteCheque = 1000;
+		ContaCorrente cc = new ContaCorrente(numeroConta,titular,limiteCheque);
+		
+		double valorDeposita = 1000;
+		double valorSacar = 3000;
+		cc.depositar(valorDeposita);
+	    cc.sacar(valorSacar);
+		assertEquals(valorDeposita, cc.getSaldo());
+	}
+	
+	@Test
+	void validar_deposito_de_juros(){
+		String titular = "Andre";
+		String numeroConta = "12345";
+		double limiteCheque = 1000;
+		ContaCorrente cc = new ContaCorrente(numeroConta,titular,limiteCheque);
+		double valorDeposito= 1000;
+		cc.depositar(valorDeposito);
+		cc.debitarJuros();
+		valorDeposito -= valorDeposito * 0.013; //(valorDeposito * cc.getLimiteChequeEspecial());
+		assertEquals(valorDeposito, cc.getSaldo());
+		
 	}
 }
